@@ -1,0 +1,86 @@
+!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZayanProxy</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #080b1b;
+  color: white;
+  text-align: center;
+}
+header {
+  padding: 25px;
+  background: #11152c;
+  font-size: 28px;
+  font-weight: bold;
+}
+span { color: #a35aff; }
+main { padding: 70px 20px; }
+h1 { font-size: 48px; }
+p { color: #c5c9df; }
+input {
+  padding: 16px;
+  width: min(65%, 450px);
+  border-radius: 10px;
+  border: 1px solid #777;
+  background: #171d38;
+  color: white;
+}
+button {
+  padding: 16px 25px;
+  border: 0;
+  border-radius: 10px;
+  background: #8b35ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.card {
+  margin: 35px auto;
+  padding: 25px;
+  max-width: 500px;
+  background: #141a35;
+  border-radius: 15px;
+}
+</style>
+</head>
+<body>
+<header>Zayan<span>Proxy</span></header>
+<main>
+  <h1>Welcome to <span>ZayanProxy</span>!</h1>
+  <p>Your own web hub.</p>
+
+  <form id="urlForm">
+    <input id="urlInput" placeholder="Enter a website address" required>
+    <button type="submit">GO →</button>
+  </form>
+
+  <div class="card">
+    <h2>Welcome!</h2>
+    <p>Thanks for visiting ZayanProxy.</p>
+    <p>This demo opens websites in a new tab. It is not a web proxy.</p>
+  </div>
+</main>
+<script>
+document.getElementById("urlForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  let address = document.getElementById("urlInput").value.trim();
+  if (!/^https?:\/\//i.test(address)) {
+    address = "https://" + address;
+  }
+  try {
+    const url = new URL(address);
+    if (url.protocol !== "https:" && url.protocol !== "http:") return;
+    window.open(url.href, "_blank", "noopener,noreferrer");
+  } catch {
+    alert("Enter a valid website address.");
+  }
+});
+</script>
+</body>
+</html>
